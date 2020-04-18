@@ -1,0 +1,5 @@
+hset wegirl:home:tagsconfig "c1" "{\"cid\":\"c1\", \"title\":\"测1\"}"
+hset wegirl:home:tagsconfig "c2" "{\"cid\":\"c2\", \"title\":\"测2\"}"
+hset wegirl:home:tagsconfig "c3" "{\"cid\":\"c3\", \"title\":\"测3\"}"
+hset wegirl:home:tagsconfig "c4" "{\"cid\":\"c4\", \"title\":\"测4\"}"
+
