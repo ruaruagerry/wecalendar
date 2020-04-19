@@ -4,7 +4,7 @@
  * @LastEditTime : 2019-12-27 16:59:55
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: \weagent\handles\data\data_entrance.go
+ * @FilePath: \wecalendar\handles\data\data_entrance.go
  */
 
 package data
@@ -12,10 +12,10 @@ package data
 import (
 	"encoding/json"
 	"time"
-	"weagent/gconst"
-	"weagent/pb"
-	"weagent/rconst"
-	"weagent/server"
+	"wecalendar/gconst"
+	"wecalendar/pb"
+	"wecalendar/rconst"
+	"wecalendar/server"
 
 	"github.com/garyburd/redigo/redis"
 	"github.com/golang/protobuf/proto"

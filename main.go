@@ -7,19 +7,18 @@ import (
 	"runtime"
 	"runtime/pprof"
 	"time"
-	"weagent/gamecfg"
-	"weagent/gfunc"
-	"weagent/server"
-	"weagent/servercfg"
+	"wecalendar/gamecfg"
+	"wecalendar/gfunc"
+	"wecalendar/server"
+	"wecalendar/servercfg"
 
 	_ "net/http/pprof"
 
-	_ "weagent/handles/auth"
-	_ "weagent/handles/data"
-	_ "weagent/handles/game"
-	_ "weagent/handles/money"
-	_ "weagent/handles/phone"
-	_ "weagent/handles/setup"
+	_ "wecalendar/handles/auth"
+	_ "wecalendar/handles/data"
+	_ "wecalendar/handles/money"
+	_ "wecalendar/handles/phone"
+	_ "wecalendar/handles/setup"
 
 	log "github.com/sirupsen/logrus"
 )

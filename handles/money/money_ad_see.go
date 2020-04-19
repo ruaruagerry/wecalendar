@@ -2,12 +2,12 @@ package money
 
 import (
 	"time"
-	"weagent/gconst"
-	"weagent/gfunc"
-	"weagent/pb"
-	"weagent/rconst"
-	"weagent/server"
-	"weagent/tables"
+	"wecalendar/gconst"
+	"wecalendar/gfunc"
+	"wecalendar/pb"
+	"wecalendar/rconst"
+	"wecalendar/server"
+	"wecalendar/tables"
 
 	"github.com/garyburd/redigo/redis"
 	"github.com/golang/protobuf/proto"

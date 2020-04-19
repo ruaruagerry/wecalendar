@@ -3,7 +3,7 @@ package server
 import (
 	"fmt"
 	"time"
-	"weagent/servercfg"
+	"wecalendar/servercfg"
 
 	"github.com/garyburd/redigo/redis"
 	log "github.com/sirupsen/logrus"

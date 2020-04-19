@@ -2,7 +2,7 @@ package rconst
 
 const (
 	// HashAccountPrefix account hash table + playerid
-	HashAccountPrefix = "weagent:acc:"
+	HashAccountPrefix = "wecalendar:acc:"
 	// FieldAccUserID user id
 	FieldAccUserID = "id"
 	// FieldAccName account name
@@ -25,7 +25,7 @@ const (
 	FieldAccChannel = "channel"
 
 	// HashAccountOpenIDPrefix + openid
-	HashAccountOpenIDPrefix = "weagent:acc:openid:"
+	HashAccountOpenIDPrefix = "wecalendar:acc:openid:"
 	// FieldAccOpenIDUserID user id
 	FieldAccOpenIDUserID = "id"
 	// FieldAccOpenIDOpenID account openID
@@ -34,5 +34,5 @@ const (
 	FieldAccOpenIDPhone = "phone"
 
 	// SetUsers 登录过的用户
-	SetUsers = "weagent:users"
+	SetUsers = "wecalendar:users"
 )

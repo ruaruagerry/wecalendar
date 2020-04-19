@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
-	"weagent/servercfg"
 	"syscall"
+	"wecalendar/servercfg"
 )
 
 func waitForSignal() {

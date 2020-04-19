@@ -9,13 +9,13 @@
     "redis_server": "192.168.199.241:6379",
     // mysql服务器信息
     "db": {
-        "dbName": "weagent",
+        "dbName": "wecalendar",
         "dbIP": "192.168.199.241:3306",
         "dbUser": "root",
         "dbPassword": "123456"
     },
     "db_log": {
-        "dbName": "weagentlog",
+        "dbName": "wecalendarlog",
         "dbIP": "192.168.199.241:3306",
         "dbUser": "root",
         "dbPassword": "123456"

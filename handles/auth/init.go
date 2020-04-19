@@ -1,6 +1,6 @@
 package auth
 
-import "weagent/server"
+import "wecalendar/server"
 
 func init() {
 	server.RegisterPostHandleNoUserID("/auth/wxlogin", wxLoginHandle)     // 微信登陆

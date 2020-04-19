@@ -2,10 +2,10 @@ package money
 
 import (
 	"encoding/json"
-	"weagent/gconst"
-	"weagent/pb"
-	"weagent/server"
-	"weagent/tables"
+	"wecalendar/gconst"
+	"wecalendar/pb"
+	"wecalendar/server"
+	"wecalendar/tables"
 
 	"github.com/golang/protobuf/proto"
 )

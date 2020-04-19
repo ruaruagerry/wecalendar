@@ -3,7 +3,7 @@ package setup
 import (
 	"strings"
 	"unicode"
-	"weagent/gfunc"
+	"wecalendar/gfunc"
 )
 
 var (

@@ -1,2 +1,2 @@
 #!/bin/bash
-nohup ./weagent -c ./servercfg/server.json >> weagent.log 2>&1 &
+nohup ./wecalendar -c ./servercfg/server.json >> wecalendar.log 2>&1 &

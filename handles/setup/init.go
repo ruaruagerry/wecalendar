@@ -1,7 +1,7 @@
 package setup
 
 import (
-	"weagent/server"
+	"wecalendar/server"
 )
 
 func init() {

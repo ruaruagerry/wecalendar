@@ -1,4 +1,4 @@
-module weagent
+module wecalendar
 
 go 1.12
 

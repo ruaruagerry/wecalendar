@@ -2,11 +2,11 @@ package money
 
 import (
 	"encoding/json"
-	"weagent/gconst"
-	"weagent/gfunc"
-	"weagent/pb"
-	"weagent/rconst"
-	"weagent/server"
+	"wecalendar/gconst"
+	"wecalendar/gfunc"
+	"wecalendar/pb"
+	"wecalendar/rconst"
+	"wecalendar/server"
 
 	"github.com/garyburd/redigo/redis"
 	"github.com/golang/protobuf/proto"

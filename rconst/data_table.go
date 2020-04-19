@@ -4,16 +4,16 @@
  * @LastEditTime : 2019-12-27 15:49:55
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: \weagent\rconst\data_table.go
+ * @FilePath: \wecalendar\rconst\data_table.go
  */
 
 package rconst
 
 const (
 	// StringDataEarnings 全网总收益（单位分）
-	StringDataEarnings = "weagent:data:earnings"
+	StringDataEarnings = "wecalendar:data:earnings"
 	// StringDataDayEarningsPrefix 全网当日收益（单位分）
-	StringDataDayEarningsPrefix = "weagent:data:dayearnings:"
+	StringDataDayEarningsPrefix = "wecalendar:data:dayearnings:"
 	// StringDataDayAdNumPrefix 全网当日看广告总数
-	StringDataDayAdNumPrefix = "weagent:data:dayadnum:"
+	StringDataDayAdNumPrefix = "wecalendar:data:dayadnum:"
 )

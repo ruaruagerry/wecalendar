@@ -2,7 +2,7 @@ package server
 
 import (
 	"time"
-	"weagent/rconst"
+	"wecalendar/rconst"
 
 	"github.com/garyburd/redigo/redis"
 	"github.com/go-xorm/xorm"

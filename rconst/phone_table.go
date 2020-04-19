@@ -8,9 +8,9 @@ type PhoneMsg struct {
 
 const (
 	// StringPhoneGetCodeTagPrefix 获取验证码标志
-	StringPhoneGetCodeTagPrefix = "weagent:phone:codetag:"
+	StringPhoneGetCodeTagPrefix = "wecalendar:phone:codetag:"
 	// StringPhoneCodePrefix 验证码信息
-	StringPhoneCodePrefix = "weagent:phone:code:"
+	StringPhoneCodePrefix = "wecalendar:phone:code:"
 	// SetPhoneHasBinded 已绑定的手机号
-	SetPhoneHasBinded = "weagent:phone:hasbinded"
+	SetPhoneHasBinded = "wecalendar:phone:hasbinded"
 )

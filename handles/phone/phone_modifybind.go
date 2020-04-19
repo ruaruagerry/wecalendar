@@ -2,10 +2,10 @@ package phone
 
 import (
 	"encoding/json"
-	"weagent/gconst"
-	"weagent/pb"
-	"weagent/rconst"
-	"weagent/server"
+	"wecalendar/gconst"
+	"wecalendar/pb"
+	"wecalendar/rconst"
+	"wecalendar/server"
 
 	"github.com/golang/protobuf/proto"
 	"github.com/gomodule/redigo/redis"

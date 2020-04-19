@@ -1,9 +1,9 @@
 package demo
 
 import (
-	"weagent/gconst"
-	"weagent/pb"
-	"weagent/server"
+	"wecalendar/gconst"
+	"wecalendar/pb"
+	"wecalendar/server"
 
 	"github.com/golang/protobuf/proto"
 )

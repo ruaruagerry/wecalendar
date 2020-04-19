@@ -5,8 +5,8 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"weagent/gconst"
-	"weagent/pb"
+	"wecalendar/gconst"
+	"wecalendar/pb"
 
 	"github.com/golang/protobuf/proto"
 

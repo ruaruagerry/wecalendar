@@ -4,13 +4,13 @@
  * @LastEditTime : 2019-12-27 16:45:24
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: \weagent\handles\data\init.go
+ * @FilePath: \wecalendar\handles\data\init.go
  */
 
 package data
 
 import (
-	"weagent/server"
+	"wecalendar/server"
 )
 
 func init() {

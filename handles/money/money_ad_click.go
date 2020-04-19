@@ -1,10 +1,10 @@
 package money
 
 import (
-	"weagent/gconst"
-	"weagent/pb"
-	"weagent/rconst"
-	"weagent/server"
+	"wecalendar/gconst"
+	"wecalendar/pb"
+	"wecalendar/rconst"
+	"wecalendar/server"
 
 	"github.com/garyburd/redigo/redis"
 	"github.com/golang/protobuf/proto"
