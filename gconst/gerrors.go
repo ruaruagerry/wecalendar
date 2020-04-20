@@ -76,9 +76,13 @@ const (
 	// ErrMoneyNotEnough 提现金额不足
 	ErrMoneyNotEnough = Error(1201)
 
-	/* game 1300-1399 */
-	// ErrRebirtNumNotEnough 复活次数不足
-	ErrRebirtNumNotEnough = Error(1300)
+	/* divination 1300-1399 */
+	// ErrContentSensitive 吐槽包含敏感词
+	ErrContentSensitive = Error(1300)
+	// ErrContentLenNotEnough 有效字符不足10位
+	ErrContentLenNotEnough = Error(1301)
+	// ErrNoDivination 当日没有吐槽
+	ErrNoDivination = Error(1302)
 )
 
 var errMsg = map[Error]string{

@@ -16,6 +16,7 @@ import (
 
 	_ "wecalendar/handles/auth"
 	_ "wecalendar/handles/data"
+	_ "wecalendar/handles/divination"
 	_ "wecalendar/handles/money"
 	_ "wecalendar/handles/phone"
 	_ "wecalendar/handles/setup"
