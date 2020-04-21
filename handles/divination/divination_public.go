@@ -91,7 +91,7 @@ func divinationPublicHandle(c *server.StupidContext) {
 	}
 	conn.Send("HSET", rconst.HashDivinationPrefix+nowdata, divinationid, databyte)
 	conn.Send("ZADD", rconst.ZSetDivinationRecordPrefix+nowdata, nowtime.Unix(), divinationid)
-	conn.Send("SET", rconst.StringDivinationID, divinationid)
+	conn.Send("SETEX", rconst.StringDivinationID, gfunc.TomorrowZeroRemain(), divinationid)
 	conn.Send("ZINCRBY", rconst.ZSetDivinationRank, 1, playerid)
 	conn.Send("EXPIRE", rconst.ZSetDivinationRank, gfunc.TomorrowZeroRemain())
 	_, err = conn.Do("EXEC")
