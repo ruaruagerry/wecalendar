@@ -92,6 +92,8 @@ func divinationPublicHandle(c *server.StupidContext) {
 	conn.Send("HSET", rconst.HashDivinationPrefix+nowdata, divinationid, databyte)
 	conn.Send("ZADD", rconst.ZSetDivinationRecordPrefix+nowdata, nowtime.Unix(), divinationid)
 	conn.Send("SET", rconst.StringDivinationID, divinationid)
+	conn.Send("ZINCRBY", rconst.ZSetDivinationRank, 1, playerid)
+	conn.Send("EXPIRE", rconst.ZSetDivinationRank, gfunc.TomorrowZeroRemain())
 	_, err = conn.Do("EXEC")
 	if err != nil {
 		httpRsp.Result = proto.Int32(int32(gconst.ErrRedis))

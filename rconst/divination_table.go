@@ -15,4 +15,13 @@ const (
 	HashDivinationPrefix = "wecalendar:divination:"
 	// ZSetDivinationRecordPrefix 吐槽记录表+日期
 	ZSetDivinationRecordPrefix = "wecalendar:divinationrecord:"
+	// ZSetDivinationRank 吐槽排行榜
+	ZSetDivinationRank = "wecalendar:rank"
+	// StringDivinationBestPrefix 最佳吐槽+日期
+	StringDivinationBestPrefix = "wecalendar:divinationbest:"
+
+	// HashDivinationConfig 吐槽配置
+	HashDivinationConfig = "wecalendar:divination:config"
+	// FieldDivinationFirst 虚假第一名开关
+	FieldDivinationFirst = "first"
 )

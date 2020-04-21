@@ -83,6 +83,8 @@ const (
 	ErrContentLenNotEnough = Error(1301)
 	// ErrNoDivination 当日没有吐槽
 	ErrNoDivination = Error(1302)
+	// ErrNoDivinationBest 当日还没有最佳吐槽
+	ErrNoDivinationBest = Error(1303)
 )
 
 var errMsg = map[Error]string{

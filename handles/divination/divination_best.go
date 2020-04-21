@@ -12,7 +12,7 @@ import (
 	"github.com/gomodule/redigo/redis"
 )
 
-type divinationGetRsp struct {
+type divinationBestRsp struct {
 	Content      string `json:"content"`
 	PlayerID     string `json:"playerid"`
 	DivinationID int64  `json:"divinationid"`
@@ -21,15 +21,15 @@ type divinationGetRsp struct {
 	Time         string `json:"time"`
 }
 
-func divinationGetHandle(c *server.StupidContext) {
-	log := c.Log.WithField("func", "divination.divinationGetHandle")
+func divinationBestHandle(c *server.StupidContext) {
+	log := c.Log.WithField("func", "divination.divinationBestHandle")
 
 	httpRsp := pb.HTTPResponse{
 		Result: proto.Int32(int32(gconst.UnknownError)),
 	}
 	defer c.WriteJSONRsp(&httpRsp)
 
-	log.Info("divinationGetHandle enter")
+	log.Info("divinationBestHandle enter")
 
 	conn := c.RedisConn
 	nowtime := time.Now()
@@ -37,7 +37,7 @@ func divinationGetHandle(c *server.StupidContext) {
 
 	// redis multi get
 	conn.Send("MULTI")
-	conn.Send("ZRANGE", rconst.ZSetDivinationRecordPrefix+nowdata, 0, -1)
+	conn.Send("GET", rconst.StringDivinationBestPrefix+nowdata)
 	redisMDArray, err := redis.Values(conn.Do("EXEC"))
 	if err != nil {
 		httpRsp.Result = proto.Int32(int32(gconst.ErrRedis))
@@ -46,20 +46,18 @@ func divinationGetHandle(c *server.StupidContext) {
 		return
 	}
 
-	alldivinationum, _ := redis.Ints(redisMDArray[0], nil)
-	if len(alldivinationum) == 0 {
-		httpRsp.Result = proto.Int32(int32(gconst.ErrNoDivination))
-		httpRsp.Msg = proto.String("当日没有吐槽")
-		log.Errorf("code:%d msg:%s not divination", httpRsp.GetResult(), httpRsp.GetMsg())
+	bestid, _ := redis.Int(redisMDArray[0], nil)
+	if bestid == 0 {
+		httpRsp.Result = proto.Int32(int32(gconst.ErrNoDivinationBest))
+		httpRsp.Msg = proto.String("当日还没有最佳吐槽")
+		log.Errorf("code:%d msg:%s not divination best", httpRsp.GetResult(), httpRsp.GetMsg())
 		return
 	}
-
-	divinationid := droprand.Int31n(int32(len(alldivinationum)))
 
 	// do something
 	// 获取吐槽信息
 	conn.Send("MULTI")
-	conn.Send("HGET", rconst.HashDivinationPrefix+nowdata, divinationid)
+	conn.Send("HGET", rconst.HashDivinationPrefix+nowdata, bestid)
 	redisMDArray, err = redis.Values(conn.Do("EXEC"))
 	if err != nil {
 		httpRsp.Result = proto.Int32(int32(gconst.ErrRedis))
@@ -95,7 +93,7 @@ func divinationGetHandle(c *server.StupidContext) {
 	portrait, _ := redis.String(redisMDArray[1], nil)
 
 	// rsp
-	rsp := &divinationGetRsp{
+	rsp := &divinationBestRsp{
 		Content:      divination.Content,
 		PlayerID:     divination.PlayerID,
 		DivinationID: divination.DivinationID,
@@ -113,7 +111,7 @@ func divinationGetHandle(c *server.StupidContext) {
 	httpRsp.Result = proto.Int32(int32(gconst.Success))
 	httpRsp.Data = data
 
-	log.Info("divinationGetHandle rsp, rsp:", string(data))
+	log.Info("divinationBestHandle rsp, rsp:", string(data))
 
 	return
 }
