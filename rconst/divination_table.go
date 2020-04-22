@@ -6,6 +6,8 @@ type Divination struct {
 	DivinationID int64  `json:"divinationid"` // 吐槽id
 	Time         int64  `json:"time"`         // 时间
 	Content      string `json:"content"`      // 内容
+	Name         string `json:"name"`         // 昵称
+	Portrait     string `json:"portrait"`     // 头像
 }
 
 const (

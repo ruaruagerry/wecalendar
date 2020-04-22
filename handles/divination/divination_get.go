@@ -79,30 +79,36 @@ func divinationGetHandle(c *server.StupidContext) {
 		return
 	}
 
-	// 获取玩家信息
-	conn.Send("MULTI")
-	conn.Send("HGET", rconst.HashAccountPrefix+divination.PlayerID, rconst.FieldAccName)
-	conn.Send("HGET", rconst.HashAccountPrefix+divination.PlayerID, rconst.FieldAccImage)
-	redisMDArray, err = redis.Values(conn.Do("EXEC"))
-	if err != nil {
-		httpRsp.Result = proto.Int32(int32(gconst.ErrRedis))
-		httpRsp.Msg = proto.String("玩家信息统一获取缓存操作失败")
-		log.Errorf("code:%d msg:%s redisMDArray Values err, err:%s", httpRsp.GetResult(), httpRsp.GetMsg(), err.Error())
-		return
-	}
-
-	nickname, _ := redis.String(redisMDArray[0], nil)
-	portrait, _ := redis.String(redisMDArray[1], nil)
-
-	// rsp
 	rsp := &divinationGetRsp{
 		Content:      divination.Content,
 		PlayerID:     divination.PlayerID,
 		DivinationID: divination.DivinationID,
-		NickName:     nickname,
-		Portrait:     portrait,
+		NickName:     divination.Name,
+		Portrait:     divination.Portrait,
 		Time:         time.Unix(divination.Time, 0).Format("2006-01-02 15:04:05"),
 	}
+
+	if divination.Name == "" {
+		// 获取玩家信息
+		conn.Send("MULTI")
+		conn.Send("HGET", rconst.HashAccountPrefix+divination.PlayerID, rconst.FieldAccName)
+		conn.Send("HGET", rconst.HashAccountPrefix+divination.PlayerID, rconst.FieldAccImage)
+		redisMDArray, err = redis.Values(conn.Do("EXEC"))
+		if err != nil {
+			httpRsp.Result = proto.Int32(int32(gconst.ErrRedis))
+			httpRsp.Msg = proto.String("玩家信息统一获取缓存操作失败")
+			log.Errorf("code:%d msg:%s redisMDArray Values err, err:%s", httpRsp.GetResult(), httpRsp.GetMsg(), err.Error())
+			return
+		}
+
+		nickname, _ := redis.String(redisMDArray[0], nil)
+		portrait, _ := redis.String(redisMDArray[1], nil)
+
+		rsp.NickName = nickname
+		rsp.Portrait = portrait
+	}
+
+	// rsp
 	data, err := json.Marshal(rsp)
 	if err != nil {
 		httpRsp.Result = proto.Int32(int32(gconst.ErrParse))
