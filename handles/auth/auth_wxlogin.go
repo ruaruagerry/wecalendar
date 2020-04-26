@@ -22,6 +22,7 @@ type loginReq struct {
 
 type clientInfo struct {
 	LatestVersion string `json:"latestversion"`
+	Ad            bool   `json:"ad"`
 }
 
 type loginUserInfo struct {
@@ -63,6 +64,7 @@ func wxLoginHandle(c *server.StupidContext) {
 	// redis multi get
 	conn.Send("MULTI")
 	conn.Send("HGET", rconst.HashClient, rconst.FieldClientLastestVersion)
+	conn.Send("HGET", rconst.HashClient, rconst.FieldClientAd)
 	redisMDArray, err := redis.Values(conn.Do("EXEC"))
 	if err != nil {
 		httpRsp.Result = proto.Int32(int32(gconst.ErrRedis))
@@ -72,6 +74,7 @@ func wxLoginHandle(c *server.StupidContext) {
 	}
 
 	clientlatestversion, _ := redis.String(redisMDArray[0], nil)
+	ad, _ := redis.Bool(redisMDArray[1], nil)
 
 	// account处理
 	loadAccessTokenReply, err := WeixinGetUserInfo(req.Code)
@@ -183,6 +186,7 @@ func wxLoginHandle(c *server.StupidContext) {
 	}
 	rspclientinfo := &clientInfo{
 		LatestVersion: clientlatestversion,
+		Ad:            ad,
 	}
 	rsp := &loginRsp{
 		Token:      token,

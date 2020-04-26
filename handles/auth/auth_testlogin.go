@@ -20,6 +20,7 @@ type testLoginReq struct {
 
 type testClientInfo struct {
 	LatestVersion string `json:"latestversion"`
+	Ad            bool   `json:"ad"`
 }
 
 type testLoginUserInfo struct {
@@ -61,6 +62,7 @@ func testLoginHandle(c *server.StupidContext) {
 	// redis multi get
 	conn.Send("MULTI")
 	conn.Send("HGET", rconst.HashClient, rconst.FieldClientLastestVersion)
+	conn.Send("HGET", rconst.HashClient, rconst.FieldClientAd)
 	redisMDArray, err := redis.Values(conn.Do("EXEC"))
 	if err != nil {
 		httpRsp.Result = proto.Int32(int32(gconst.ErrRedis))
@@ -70,6 +72,7 @@ func testLoginHandle(c *server.StupidContext) {
 	}
 
 	clientlatestversion, _ := redis.String(redisMDArray[0], nil)
+	ad, _ := redis.Bool(redisMDArray[1], nil)
 
 	// db操作
 	row := &tables.Account{OpenID: req.Account}
@@ -149,6 +152,7 @@ func testLoginHandle(c *server.StupidContext) {
 	}
 	rspclientinfo := &testClientInfo{
 		LatestVersion: clientlatestversion,
+		Ad:            ad,
 	}
 	rsp := &testLoginRsp{
 		Token:      token,
