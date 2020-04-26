@@ -15,6 +15,7 @@ import (
 
 type divinationPublicReq struct {
 	Content string `json:"content"`
+	Noname  bool   `json:"noname"`
 }
 
 func divinationPublicHandle(c *server.StupidContext) {
@@ -81,6 +82,7 @@ func divinationPublicHandle(c *server.StupidContext) {
 		DivinationID: divinationid,
 		Time:         nowtime.Unix(),
 		Content:      req.Content,
+		Noname:       req.Noname,
 	}
 	databyte, err := json.Marshal(data)
 	if err != nil {
@@ -104,7 +106,7 @@ func divinationPublicHandle(c *server.StupidContext) {
 
 	httpRsp.Result = proto.Int32(int32(gconst.Success))
 
-	log.Info("helloHandle rsp, result:", httpRsp.GetResult())
+	log.Info("divinationPublicHandle rsp, result:", httpRsp.GetResult())
 
 	return
 }

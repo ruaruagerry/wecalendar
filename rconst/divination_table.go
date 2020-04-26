@@ -8,6 +8,7 @@ type Divination struct {
 	Content      string `json:"content"`      // 内容
 	Name         string `json:"name"`         // 昵称
 	Portrait     string `json:"portrait"`     // 头像
+	Noname       bool   `json:"noname"`       // 匿名
 }
 
 const (

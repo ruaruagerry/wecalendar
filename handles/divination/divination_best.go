@@ -49,7 +49,7 @@ func divinationBestHandle(c *server.StupidContext) {
 	bestid, _ := redis.Int(redisMDArray[0], nil)
 	if bestid == 0 {
 		httpRsp.Result = proto.Int32(int32(gconst.ErrNoDivinationBest))
-		httpRsp.Msg = proto.String("当日还没有最佳吐槽")
+		httpRsp.Msg = proto.String("管理员还未评选昨日最佳吐槽，去公众号提醒管理员哦！")
 		log.Errorf("code:%d msg:%s not divination best", httpRsp.GetResult(), httpRsp.GetMsg())
 		return
 	}
@@ -78,7 +78,9 @@ func divinationBestHandle(c *server.StupidContext) {
 	}
 
 	// 获取玩家信息
-	if divination.Name == "" {
+	if divination.Noname {
+		divination.Name = "匿名"
+	} else if divination.Name == "" {
 		conn.Send("MULTI")
 		conn.Send("HGET", rconst.HashAccountPrefix+divination.PlayerID, rconst.FieldAccName)
 		conn.Send("HGET", rconst.HashAccountPrefix+divination.PlayerID, rconst.FieldAccImage)

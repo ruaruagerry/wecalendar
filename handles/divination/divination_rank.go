@@ -20,7 +20,7 @@ type divinationRankItem struct {
 }
 
 type divinationRankRsp struct {
-	ranks []*divinationRankItem
+	Ranks []*divinationRankItem `json:"ranks"`
 }
 
 // 只拉取前四名
@@ -100,7 +100,7 @@ func divinationRankHandle(c *server.StupidContext) {
 			Rank:     1,
 		}
 
-		rsp.ranks = append(rsp.ranks, faker)
+		rsp.Ranks = append(rsp.Ranks, faker)
 	}
 
 	for i := range playerids {
@@ -118,8 +118,8 @@ func divinationRankHandle(c *server.StupidContext) {
 			Rank:     rank,
 		}
 
-		if len(rsp.ranks) < 5 {
-			rsp.ranks = append(rsp.ranks, tmprank)
+		if len(rsp.Ranks) < 5 {
+			rsp.Ranks = append(rsp.Ranks, tmprank)
 		}
 	}
 
@@ -134,7 +134,7 @@ func divinationRankHandle(c *server.StupidContext) {
 	httpRsp.Result = proto.Int32(int32(gconst.Success))
 	httpRsp.Data = data
 
-	log.Info("divinationRankHandle rsp, rsp:", string(data))
+	// log.Info("divinationRankHandle rsp, rsp:", string(data))
 
 	return
 }

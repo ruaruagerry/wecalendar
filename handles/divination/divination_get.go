@@ -46,15 +46,16 @@ func divinationGetHandle(c *server.StupidContext) {
 		return
 	}
 
-	alldivinationum, _ := redis.Ints(redisMDArray[0], nil)
-	if len(alldivinationum) == 0 {
+	alldivination, _ := redis.Ints(redisMDArray[0], nil)
+	if len(alldivination) == 0 {
 		httpRsp.Result = proto.Int32(int32(gconst.ErrNoDivination))
 		httpRsp.Msg = proto.String("当日没有吐槽")
 		log.Errorf("code:%d msg:%s not divination", httpRsp.GetResult(), httpRsp.GetMsg())
 		return
 	}
 
-	divinationid := droprand.Int31n(int32(len(alldivinationum)))
+	index := droprand.Int31n(int32(len(alldivination)))
+	divinationid := alldivination[index]
 
 	// do something
 	// 获取吐槽信息
@@ -88,7 +89,9 @@ func divinationGetHandle(c *server.StupidContext) {
 		Time:         time.Unix(divination.Time, 0).Format("2006-01-02 15:04:05"),
 	}
 
-	if divination.Name == "" {
+	if divination.Noname {
+		rsp.NickName = "匿名"
+	} else if divination.Name == "" {
 		// 获取玩家信息
 		conn.Send("MULTI")
 		conn.Send("HGET", rconst.HashAccountPrefix+divination.PlayerID, rconst.FieldAccName)
@@ -118,8 +121,6 @@ func divinationGetHandle(c *server.StupidContext) {
 	}
 	httpRsp.Result = proto.Int32(int32(gconst.Success))
 	httpRsp.Data = data
-
-	log.Info("divinationGetHandle rsp, rsp:", string(data))
 
 	return
 }
